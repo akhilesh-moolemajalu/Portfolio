@@ -1,0 +1,2 @@
+akhilesh-portfolio-link.netlify.app
+click this link to get a portfolio design.
