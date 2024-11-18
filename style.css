@@ -1,6 +1,7 @@
 /* ----- POPPINS FONT Link ----- */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
+
 /* ----- VARIABLES ----- */
 :root{
     --body-color: rgb(250, 250, 250);
@@ -359,14 +360,17 @@ h3{
 }
 
 /* ----- PROJECTS BOX ----- */
-.project-container{
+
+
+.project-container {
     display: flex;
-    width: 100%;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    flex-wrap: wrap;
+    width: 100%;
 }
-.project-box{
+
+.project-box {
     position: relative;
     display: flex;
     justify-content: center;
@@ -377,125 +381,206 @@ h3{
     background: var(--color-white);
     border-radius: 20px;
     box-shadow: 1px 8px 10px 2px var(--first-shadow-color);
-    overflow: hidden;
+    overflow: auto;
+    transition: background 0.4s ease;
 }
-.project-box>i{
+
+.project-box:hover {
+    background: var(--second-color);
+}
+
+.project-box > i {
     font-size: 50px;
     color: #00B5E7;
     margin-bottom: 25px;
 }
-.project-box label{
+
+
+
+.project-box label {
     font-size: 15px;
     color: #777;
 }
-.project-box::after, .contact-info::after{
-    content: "";
-    position: absolute;
-    bottom: -100%;
-    background: var(--second-color);
+
+
+
+/* Flip Card Styles */
+
+.flip-card-front {
+    background: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.flip-card-front i {
+    font-size: 60px;
+    color: #00B5E7;
+    margin-bottom: 10px;
+}
+
+.flip-card-front h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: var(--color-black);
+}
+
+.flip-card-front label {
+    font-size: 14px;
+    color: #777;
+}
+
+
+
+
+
+.flip-card {
     width: 100%;
     height: 100%;
-    transition: .4s;
+    position: relative;
+}
+
+.flip-card-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+}
+
+.project-box:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 8px;
     z-index: 1;
 }
-.project-box:hover.project-box::after,
-.contact-info:hover.contact-info::after{
-    bottom: 0;
-}
-.project-box:hover.project-box i,
-.project-box:hover.project-box>h3,
-.project-box:hover.project-box>label{
-    color: var(--color-white);
-    z-index: 2;
-}
 
-/* ----- CONTACT BOX ----- */
-
-    
-.contact-info{
-    position: sticky;
-    top: 20px;  
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px 30px;
-    width: 100%;
-    height: 315px;
-    background: var(--second-color);
-    border-radius: 10px;
-    box-shadow: 1px 8px 10px 2px var(--first-shadow-color);
-    overflow: hidden;
-}
-.contact-info>h2{
-    color: var(--color-white);
-    margin-bottom: 20px;
-}
-.contact-info>p{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--color-white);
-    margin-block: 5px;
-}
-.contact-info p>i{
-    font-size: 18px;
-}
-.contact-info::after{
+.flip-card-front {
     background: var(--color-white);
 }
-.contact-info:hover.contact-info h2,
-.contact-info:hover.contact-info p,
-.contact-info:hover.contact-info i{
-    color: #777;
-    z-index: 2;
-}
-/* ----- CONTACT FORM ----- */
 
-.form-control{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-}
-.form-inputs{
-    display: flex;
-    gap: 10px;
-    width: 100%;
-}
-.input-field{
-    width: 50%;
-    height: 55px;
-    background: transparent;
-    border: 2px solid #AAA;
-    border-radius: 10px;
-    padding-inline: 20px;
-    outline: none;
-}
-textarea{
-    width: 100%;
-    height: 250px;
-    background: transparent;
-    border: 2px solid #AAA;
-    border-radius: 10px;
-    padding: 15px 20px;
-    outline: none;
-    resize: none;
-}
-.form-button>.btn{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.flip-card-back {
     background: var(--second-color);
+    transform: rotateY(180deg);
     color: var(--color-white);
 }
-.form-button>.btn:hover{
+
+
+
+
+
+/* RESPONSIVE STYLES */
+
+/* For screens less than 1024px */
+@media only screen and (max-width: 1024px) {
+    .project-box {
+        width: 45%;
+    }
+}
+
+/* For screens less than 768px */
+@media only screen and (max-width: 768px) {
+    .project-box {
+        width: 100%;
+    }
+}
+
+
+/* ----- CONTACT FORM ----- */
+
+/* General Contact Section Styling */
+.section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 40px 20px;
+}
+
+.top-header h1 {
+    font-size: 2rem;
+    color: var(--second-color);
+    margin-bottom: 10px;
+}
+
+.top-header span {
+    color: #777;
+    font-size: 1rem;
+}
+
+/* Contact Box Styling */
+.contact-box {
+    background: var(--color-white);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.contact-box h2 {
+    font-size: 1.8rem;
+    color: var(--second-color);
+    margin-bottom: 20px;
+}
+
+.contact-box p {
+    font-size: 1rem;
+    margin: 10px 0;
+    color: #555;
+}
+
+.contact-box i {
+    font-size: 1.2rem;
+    color: var(--second-color);
+    margin-right: 8px;
+}
+
+/* Contact Actions (Buttons) */
+.contact-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.contact-actions .btn {
+    padding: 10px 20px;
+    background: var(--second-color);
+    color: var(--color-white);
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.contact-actions .btn:hover {
     background: #00B5E7;
+    transform: scale(1.05);
 }
-.form-button i{
-    font-size: 18px;
-    rotate: -45deg;
-}
+
 /* ----- FOOTER BOX ----- */
 footer{
     display: flex;
@@ -534,24 +619,32 @@ footer{
 
 /* ----- MEDIA QUERY == 1024px / RESPONSIVE ----- */
 @media only screen and (max-width: 1024px){
-    .featured-text{
+    .featured-text {
         padding: 0;
     }
-    .image, .image img{
+    .image, .image img {
         width: 320px;
         height: 320px;
+    }
+    .featured-text-btn {
+        justify-content: center; /* Center buttons for medium screens */
+        flex-wrap: wrap; /* Allow wrapping */
+        gap: 15px; /* Add spacing between buttons */
+    }
+    .featured-text-btn .blue-btn, .featured-text-btn .btn {
+        width: auto; /* Keep buttons inline unless very small screens */
     }
 }
 
 /* ----- MEDIA QUERY == 900px / RESPONSIVE ----- */
 @media only screen and (max-width: 900px) {
-    .nav-button{
+    .nav-button {
         display: none;
     }
-    .nav-menu.responsive{
+    .nav-menu.responsive {
         left: 0;
     }
-    .nav-menu{
+    .nav-menu {
         position: fixed;
         top: 80px;
         left: -100%;
@@ -565,76 +658,94 @@ footer{
         height: 90vh;
         transition: .3s;
     }
-    .nav_menu_list{
+    .nav_menu_list {
         flex-direction: column;
     }
-    .nav-menu-btn{
+    .nav-menu-btn {
         display: flex;
         align-items: center;
         justify-content: center;
     }
-    .featured-box{
+    .featured-box {
         flex-direction: column;
         justify-content: center;
         height: 100vh;
     }
-    .featured-text{
+    .featured-text {
         width: 100%;
         order: 2;
         justify-content: center;
         align-content: flex-start;
         min-height: 60vh;
     }
-    .social_icons{
+    .featured-text-btn {
+        justify-content: center; /* Center buttons */
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 15px; /* Add spacing between buttons */
+    }
+    .featured-text-btn .blue-btn, .featured-text-btn .btn {
+        width: 80%; /* Buttons take up 80% of the width */
+        max-width: 300px; /* Optional: cap maximum width */
+        text-align: center; /* Center-align text */
+    }
+    .social_icons {
         margin-top: 2em;
     }
-    .featured-image{
+    .featured-image {
         order: 1;
         justify-content: center;
         min-height: 150px;
         width: 100%;
         margin-top: 65px;
     }
-    .image, .image img{
+    .image, .image img {
         width: 150px;
         height: 150px;
     }
-    .row{
+    .row {
         display: flex;
         flex-direction: column;
         justify-content: center;
         gap: 50px;
     }
-    .col{
+    .col {
         display: flex;
         justify-content: center;
         width: 100%;
     }
-    .about-info, .contact-info{
+    .about-info, .contact-info {
         width: 100%;
     }
-    .project-container{
+    .project-container {
         justify-content: center;
     }
-    .project-box{
+    .project-box {
         width: 80%;
     }
-
 }
 
 /* ----- MEDIA QUERY == 540px / RESPONSIVE ----- */
-
 @media only screen and (max-width: 540px){
-    .featured-name{
+    .featured-name {
         font-size: 40px;
     }
-    .project-box{
+    .featured-text-btn {
+        flex-direction: column; /* Stack buttons vertically */
+        justify-content: center; /* Center buttons */
+        gap: 10px; /* Add spacing between buttons */
+    }
+    .featured-text-btn .blue-btn, .featured-text-btn .btn {
+        width: 100%; /* Full-width buttons on small screens */
+        max-width: 300px; /* Optional: cap maximum width */
+        font-size: 14px; /* Adjust font size for small screens */
+    }
+    .project-box {
         width: 100%;
     }
-    .form-inputs{
+    .form-inputs {
         flex-direction: column;
     }
-    .input-field{
+    .input-field {
         width: 100%;
     }
 }
